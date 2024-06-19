@@ -19,7 +19,7 @@ Without them, it would be impossible to have a free self-compiled version of the
 
 Cork is not just an interface for Homebrew. It has many features that are either very hard to accomplish using Homebrew alone, or straight-up not possible.
 
-**Things that are not possible without Cork**
+### **Things that are not possible without Cork**
 
 - [x] Automatically respecting system proxy.
 - [x] Clearing of cached downloads.
@@ -27,7 +27,7 @@ Cork is not just an interface for Homebrew. It has many features that are either
 - [x] Seeing this much info about a package in one convenient location.
 - [x] Tagging packages. This is a Cork-only feature that lets you mark any number of packages you'd like to keep track of.
 
-**Things that Cork makes easier**
+### **Things that Cork makes easier**
 
 - [x] Listing of installed packages. Cork has its own way of loading packages, which is around 10 times faster than the Homebrew implementation.
 - [x] Knowing which packages you installed intentionally, and which packages were installed only as dependencies. While somewhat possible with the `brew leaves` command, it is often unreliable, often not listing packages that should be included.
@@ -51,10 +51,13 @@ Pre-compiled, always up-to-date versions are available from my Homebrew tap. You
 However, if you don't want to do any of the above, you can always compile Cork yourself. See below for instructions.
 
 ## Screenshots
+
 ### Main Window
+
 ![Start Page](https://i.imgur.com/DNCsucp.png)
 
 ### Package Info
+
 <p align="center">
   <img alt="Package Info" src="https://i.imgur.com/U8nCdlc.png" width="28%">
 &nbsp; &nbsp; &nbsp; &nbsp;
@@ -64,6 +67,7 @@ However, if you don't want to do any of the above, you can always compile Cork y
 </p>
 
 ### Tap Info
+
 <p align="center">
   <img alt="Tap Info - Formulae Only" src="https://i.imgur.com/VZi6jKK.png" width="47%">
 &nbsp; &nbsp; &nbsp; &nbsp;
@@ -71,6 +75,7 @@ However, if you don't want to do any of the above, you can always compile Cork y
 </p>
 
 ### Install Package
+
 <p align="center">
   <img alt="Install Package" src="https://i.imgur.com/c5BNkl3.png" width="28%">
 &nbsp; &nbsp; &nbsp; &nbsp;
@@ -80,9 +85,11 @@ However, if you don't want to do any of the above, you can always compile Cork y
 </p>
 
 ### Add Taps
+
 ![Tap Taps](https://i.imgur.com/RKMUgM8.png)
 
 ### Brew Maintenance
+
 <p align="center">
   <img alt="Brew Maintenance" src="https://i.imgur.com/Ky9kjPo.png" width="47%">
 &nbsp; &nbsp; &nbsp; &nbsp;
@@ -90,7 +97,8 @@ However, if you don't want to do any of the above, you can always compile Cork y
 </p>
 
 ## Media
-Do you run a blog, a magazine, make videos, or just make content about apps for fun? Get in touch at dev@corkmac.app!
+
+Do you run a blog, a magazine, make videos, or just make content about apps for fun? Get in touch at <dev@corkmac.app>!
 
 I will provide you with the newest release and development version, answer any questions you have, and introduce you to Cork personally (and for free, or course), so you can focus on creating.
 
@@ -100,15 +108,15 @@ Compiling Cork is simple, as it does not have many dependencies.
 
 Prerequisites:
 
-* macOS Ventura or newer
-* Xcode 15 or newer
-* Git
+- macOS Ventura or newer
+- Xcode 15 or newer
+- Git
 
-### Instructions:
+### Instructions
 
-**Before you begin**
+#### **Before you begin**
 
-*Skip if you already have an Apple Developer account*
+##### *Skip if you already have an Apple Developer account*
 
 0. Enroll your account in the developer program at [https://developer.apple.com/](https://developer.apple.com/). You don't need a paid account, a free one works fine
 1. Install Xcode
@@ -118,7 +126,7 @@ Prerequisites:
 5. On the bottom left, click the **+** icon and select `Apple Development`
 6. When a new item appears in the list called `Apple Development Certificates`, you can press `Done` to close the account manager
 
-**Compiling Cork**
+#### **Compiling Cork**
 
 0. I recommend you pick a version marked by one of the version tags. Those are released versions. If you decide to compile the current state of any of the branches, you might encounter experience-breaking bugs and unfinished features
 1. Clone this repo using `git clone https://github.com/buresdv/Cork.git && cd Cork && open Cork.xcodeproj`. Xcode will open the project
@@ -129,8 +137,8 @@ Prerequisites:
 6. Under `Signing → macOS`, switch the `Signing Certificate` to `Sign to Run Locally`
 7. If it isn't already selected, change the Build Scheme to `Self-Compiled` in Xcode's [toolbar](https://developer.apple.com/design/human-interface-guidelines/toolbars#macOS).
 ![Build Scheme Selector](https://files.catbox.moe/ofufd1.jpg)
-> [!WARNING]
-> If you don't select the correct Build Scheme, Cork will require you to put in a license.
+    > [!WARNING]
+    > If you don't select the correct Build Scheme, Cork will require you to put in a license.
 8. In the Menu Bar, click `Product → Archive` and wait for the building to finish
 9. A new window will open. From the list of Cork rows, select the topmost one, and click `Distribute App`
 10. In the popup that appears, click `Custom`, then click `Next` in the bottom right of the popup
