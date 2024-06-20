@@ -5,7 +5,56 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  XCODE_VERSION: 15
+  SCHEME: Self-Compiled
+  CONFIGURATION: Release
+  ARCHITECHTURE: x86_64
+  ARCHIVE_NAME: Cork.xcarchive
+  EXPORT_PATH: CorkApp
+
 jobs:
   build:
     runs-on: macos-latest
-    name: Build
+    name: Build Cork app and create DMG
+
+    steps:
+    - name: Set up Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: ${{ env.XCODE_VERSION }}
+    - name: Install Volta
+      uses: volta-cli/action@v4
+    - name: Install global NPM dependencies
+      run: npm install --global create-dmg
+
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Patch package.resolved file
+      uses: 2sem/patch-package-resolved@v2
+
+    - name: Build app
+      run: |
+        xcodebuild \
+          CC=clang CPLUFSPLUS=clang++ LD=clang LDPLUSPLUS=clang++ \
+          -scheme $SCHEME \
+          -configuration $CONFIGURATION \
+          -archivePath $ARCHIVE_NAME \
+          -arch $ARCHITECHTURE \
+          archive
+    - name: Export archive
+      run: |
+        xcodebuild -exportArchive \
+          -archivePath $ARCHIVE_NAME \
+          -exportPath $EXPORT_PATH \
+          -exportOptionsPlist ExportOptions.plist
+    - name: Create DMG
+      run: create-dmg $EXPORT_PATH/Cork.dmg $EXPORT_PATH/Cork.app
+
+    - name: Upload Artifact  
+      uses: actions/upload-artifact@v4
+      with:                  
+        name: Cork
+        path: |
+          $EXPORT_PATH/Cork.app
+          $EXPORT_PATH/Cork.dmg
